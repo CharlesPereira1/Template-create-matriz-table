@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div#res li {
+      list-style: none;
+    }
+    table {
+      background-color: #ffffff;
+      border: 1px solid rgb(112, 111, 111);
+    }
+    table tr th {
+      padding: 5px 0px;
+      background-color: #4e14ff;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    table tr td {
+      list-style: none;
+      align-items: center;
+      padding: 10px;
+      background-color: #f3f3f3;
+      color: rgb(112, 111, 111);
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      border: 1px solid rgb(112, 111, 111);
+    }
+  </style>
+  <body>
+    <button onclick="addtd()" id="botao" style="margin-bottom: 10px;">
+      Gerar Tabelas
+    </button>
+
+    <table cellpadding="0" cellspacing="0" id="tabletable">
+      <tr>
+        <th>
+          <strong>MENSALIDADES EM ATRASO</strong>
+        </th>
+      </tr>
+      <tr>
+        <td>
+           Total de dias inadimplentes no período:
+           <td>
+            {{totalDiasAtraso}}</strong>
+            </td>
+         </td>
+        </td>
+        
+     </tr>
+    </table>
+  </body>
+</html>
+
+<script>
+  function addtd() {
+    let linha1 = window.prompt("Informe a qtd de linhas", 1);
+    let btn = document.getElementById("botao");
+
+    let table1 = document.getElementsByTagName("table")[0];
+    let rowrow = document.createElement("tr");
+    let foods = new Array();
+
+    foods[0] = `{{mesAno}}`;
+    foods[1] = `{{fatura}}`;
+    foods[2] = "{{valorExato}}";
+    foods[3] = "{{dataVencimento}}";
+    foods[4] = "{{diasAtraso}}";
+    foods[5] = "{{valorAtualizado}}";
+    foods[6] = "{{linhaDigitavel}}";
+
+    let rodape = new Array();
+    rodape[0] = `Total de dias inadimplentes no período:`;
+    rodape[1] = `{{totalDiasAtraso}}`;
+
+    //linha criada TR
+    for (i = 0; i <= linha1 - 1; i++) {
+      let cell1 = document.createElement("tr");
+
+      //criar colunhas TD
+      for (j = 0; j < foods.length; j++) {
+        let text1 = document.createElement("td");
+        if (i >= 1) {
+          foods[0] = `{{mesAno_${i + 1}}}`;
+          foods[1] = `{{fatura_${i + 1}}}`;
+          foods[2] = `{{valorExato_${i + 1}}}`;
+          foods[3] = `{{dataVencimento_${i + 1}}}`;
+          foods[4] = `{{diasAtraso_${i + 1}}}`;
+          foods[5] = `{{valorAtualizado_${i + 1}}}`;
+          foods[6] = `{{linhaDigitavel_${i + 1}}}`;
+        }
+        let textTd = document.createTextNode([foods[j]]);
+
+        text1.appendChild(textTd);
+        cell1.appendChild(text1);
+        rowrow.appendChild(cell1);
+      }
+    }
+    table1.appendChild(rowrow);
+    btn.remove();
+    // linha.remove();
+  }
+
+  // function clear1() {
+  //   let res = window.document.getElementById("res");
+  //   let res2 = window.document.getElementById("res2");
+  //   let h1 = window.document.getElementById("h1");
+  //   res.innerText = "";
+  //   res2.innerText = "";
+  //   // h1.innerHTML = "INADIMPLENCIA_ACUMULADO_AMIL_2";
+  // }
+</script>

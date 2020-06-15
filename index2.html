@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>DOM Manipulation Performance in JavaScript</h1>
+    <!-- Resources: https://www.html5rocks.com/en/tutorials/speed/html5/ -->
+
+    <button id="createSlow">Create (slow)</button>
+    <button id="createFast">Create (fast)</button>
+    <button id="clear">Clear</button>
+    <button>Click me!</button>
+
+    <ul id="datalist"></ul>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        let dataList = document.querySelector("#datalist");
+        let hugeArray = Array.from({ length: 2 });
+
+        function slowVersion() {
+          console.time("Performance Check: slow version");
+
+          hugeArray.map(
+            () => (dataList.innerHTML += `<li>${Math.random()}</li>`)
+          );
+
+          console.timeEnd("Performance Check: slow version");
+        }
+
+        function fastVersion() {
+          console.time("Performance Check: fast version");
+
+          let content = "";
+          hugeArray.map(() => (content += `<li>${Math.random()}</li>`));
+          dataList.innerHTML = content;
+
+          console.timeEnd("Performance Check: fast version");
+        }
+
+        document
+          .querySelector("button#createSlow")
+          .addEventListener("click", slowVersion);
+
+        document
+          .querySelector("button#createFast")
+          .addEventListener("click", fastVersion);
+
+        // Clearing the <ul id="datalist"> element:
+        document
+          .querySelector("button#clear")
+          .addEventListener("click", () => (dataList.innerHTML = ""));
+      });
+    </script>
+  </body>
+</html>

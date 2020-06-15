@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div#res li {
+      list-style: none;
+    }
+    table {
+      background-color: #ffffff;
+      border: 1px solid rgb(112, 111, 111);
+    }
+    table tr th {
+      padding: 5px 0px;
+      background-color: #4e14ff;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    table tr td {
+      list-style: none;
+      align-items: "center";
+      padding: 10px;
+      background-color: #f3f3f3;
+      color: rgb(112, 111, 111);
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      border: 1px solid rgb(112, 111, 111);
+    }
+  </style>
+  <body>
+    <h1 id="h1">INADIMPLENCIA_ACUMULADO_AMIL_2</h1>
+    <input type="text" id="linha" />
+    <button type="button" onclick="linha()">Gerar</button>
+    <button type="button" onclick="clear1()">Limpar</button>
+
+    <button onclick="addtd()">Click me</button>
+    <table cellpadding="0" cellspacing="0" id="tabletable">
+      <tr>
+        <th colspan="7">
+          <strong>MENSALIDADES EM ATRASO</strong>
+        </th>
+        <tr>
+          <td>
+            {{mesAno}}
+          </td>
+          <td>
+            {{fatura}}
+          </td>
+          <td>
+            {{valorExato}}
+          </td>
+          <td>
+            {{dataVencimento}}
+          </td>
+          <td>
+            {{diasAtraso}}
+          </td>
+          <td>
+            {{valorAtualizado}}
+          </td>
+          <td>
+            {{linhaDigitavel}}
+          </td>
+        </tr>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<script>
+  function addtd() {
+    let h1 = document.getElementById("h1");
+    let res = document.getElementById("res");
+    let res2 = document.getElementById("res2");
+    let linha = document.getElementById("linha");
+
+    var table1 = document.getElementsByTagName("table")[0];
+    var rowrow = document.createElement("tr");
+    var foods = new Array();
+
+    foods[0] = `{{mesAno1_${i}}}`;
+    foods[1] = `{{fatura_${i}}}`;
+    foods[2] = "{{valorExato_${i}}}";
+    foods[3] = "{{dataVencimento_${i}}}";
+    foods[4] = "{{diasAtraso_${i}}}";
+    foods[5] = "{{valorAtualizado_${i}}}";
+    foods[6] = "{{linhaDigitavel_${i}}}";
+
+    for (i = 0; i < foods.length; i++) {
+      var cell1 = document.createElement("td");
+      console.log('cell1',cell1)
+      var text1 = document.createTextNode(foods[i]);
+      console.log('text1',text1)
+      cell1.appendChild(text1);
+      rowrow.appendChild(cell1);
+    }
+    table1.appendChild(rowrow);
+    console.log('table1',table1)
+  }
+</script>

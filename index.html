@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <style>
+    div#res li {
+      list-style: none;
+    }
+    table {
+      background-color: #ffffff;
+      border: 1px solid rgb(112, 111, 111);
+    }
+    table tr th {
+      padding: 5px 0px;
+      background-color: #4e14ff;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    table tr td {
+      list-style: none;
+      align-items: "center";
+      padding: 10px;
+      background-color: #f3f3f3;
+      color: rgb(112, 111, 111);
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      border: 1px solid rgb(112, 111, 111);
+    }
+  </style>
+  <body>
+    <script src="app.js"></script>
+
+    <h1 id="h1">INADIMPLENCIA_ACUMULADO_AMIL_2</h1>
+    <input type="text" id="linha" />
+    <button type="button" onclick="linha()">Gerar</button>
+    <button type="button" onclick="clear1()">Limpar</button>
+
+    <br />
+    <div id="res"></div>
+    <table cellpadding="0" cellspacing="0">
+      <tr>
+        <th colspan="7">
+          <strong>MENSALIDADES EM ATRASO</strong>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          {{mesAno}}
+        </td>
+        <td>
+          {{fatura}}
+        </td>
+        <td>
+          {{valorExato}}
+        </td>
+        <td>
+          {{dataVencimento}}
+        </td>
+        <td>
+          {{diasAtraso}}
+        </td>
+        <td>
+          {{valorAtualizado}}
+        </td>
+        <td>
+          {{linhaDigitavel}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{mesAno}}
+        </td>
+        <td>
+          {{fatura}}
+        </td>
+        <td>
+          {{valorExato}}
+        </td>
+        <td>
+          {{dataVencimento}}
+        </td>
+        <td>
+          {{diasAtraso}}
+        </td>
+        <td>
+          {{valorAtualizado}}
+        </td>
+        <td>
+          {{linhaDigitavel}}
+        </td>
+      </tr>
+      <div id="res">
+        <tr>
+          <td></td>
+        </tr>
+      </div>
+    </table>
+    <!-- <div id="res2"></div> -->
+  </body>
+</html>

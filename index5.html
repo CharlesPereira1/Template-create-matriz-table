@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div#res li {
+      list-style: none;
+    }
+    table {
+      background-color: #ffffff;
+      border: 1px solid rgb(112, 111, 111);
+    }
+    table tr th {
+      padding: 5px 0px;
+      background-color: #4e14ff;
+      color: #ffffff;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+    }
+    table tr td {
+      list-style: none;
+      align-items: center;
+      padding: 10px;
+      background-color: #f3f3f3;
+      color: rgb(112, 111, 111);
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 11px;
+      border: 1px solid rgb(112, 111, 111);
+    }
+  </style>
+  <body>
+    <button onclick="addtd()" id="botao" style="margin-bottom: 10px;">
+      Gerar Tabelas
+    </button>
+
+    <table cellpadding="0" cellspacing="0" id="trtr1">
+      <thead>
+        <tr>
+          <th colspan="7"><strong>MENSALIDADES EM ATRASO</strong></th>
+        </tr>
+      </thead>
+      <!-- <tbody id="trtr1"></tbody> -->
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            Total de dias inadimplentes no período:
+          </td>
+          <td colspan="3">
+            <strong>{{totalDiasAtraso}}</strong>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <table cellpadding="0" cellspacing="0" id="trtr2">
+      <thead>
+        <tr>
+          <th colspan="7"><strong>MENSALIDADES PAGAS COM ATRASO</strong></th>
+        </tr>
+      </thead>
+      <!-- <tbody id="trtr2"></tbody> -->
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            Total de dias inadimplentes no período:
+          </td>
+          <td colspan="3">
+            <strong>{{totalDiasPagasAtraso}}</strong>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+
+  <script>
+    function addtd() {
+      let linha1 = window.prompt("Informe a qtd de linhas", 12);
+      let btn = document.getElementById("botao");
+
+      let trtr1 = document.getElementById("trtr1");
+      let trtr2 = document.getElementById("trtr2");
+
+      if (trtr1) {
+        let table1 = document.getElementsByTagName("table")[0];
+        let rowrow = document.createElement("tbody");
+        let foods = new Array();
+
+        foods[0] = `{{mesAno}}`;
+        foods[1] = `{{fatura}}`;
+        foods[2] = "{{valorExato}}";
+        foods[3] = "{{dataVencimento}}";
+        foods[4] = "{{diasAtraso}}";
+        foods[5] = "{{valorAtualizado}}";
+        foods[6] = "{{linhaDigitavel}}";
+
+        //linha criada TR
+        for (i = 0; i <= linha1 - 1; i++) {
+          let cell1 = document.createElement("tr");
+
+          //criar colunhas TD
+          for (j = 0; j < foods.length; j++) {
+            let text1 = document.createElement("td");
+            if (i >= 1) {
+              foods[0] = `{{mesAno_${i + 1}}}`;
+              foods[1] = `{{fatura_${i + 1}}}`;
+              foods[2] = `{{valorExato_${i + 1}}}`;
+              foods[3] = `{{dataVencimento_${i + 1}}}`;
+              foods[4] = `{{diasAtraso_${i + 1}}}`;
+              foods[5] = `{{valorAtualizado_${i + 1}}}`;
+              foods[6] = `{{linhaDigitavel_${i + 1}}}`;
+            }
+            let textTd = document.createTextNode([foods[j]]);
+
+            text1.appendChild(textTd);
+            cell1.appendChild(text1);
+            rowrow.appendChild(cell1);
+          }
+        }
+        table1.appendChild(rowrow);
+        btn.remove();
+      }
+
+      if (trtr2) {
+        let table1 = document.getElementsByTagName("table")[1];
+        let rowrow = document.createElement("tbody");
+        let foods = new Array();
+
+        foods[0] = `{{pgMesAno}}`;
+        foods[1] = `{{pgFatura}}`;
+        foods[2] = "{{pgValorExato}}";
+        foods[3] = "{{pgValorPago}}";
+        foods[4] = "{{pgDataPagamento}}";
+        foods[5] = "{{pgDiasAtraso}}";
+        foods[6] = "{{pgPeriodo}}";
+
+        //linha criada TR
+        for (i = 0; i <= linha1 - 1; i++) {
+          let cell1 = document.createElement("tr");
+          // let cell1 = document.getElementById("trtr1");
+
+          //criar colunhas TD
+          for (j = 0; j < foods.length; j++) {
+            let text1 = document.createElement("td");
+            if (i >= 1) {
+              foods[0] = `{{pgMesAno_${i + 1}}}`;
+              foods[1] = `{{pgFatura_${i + 1}}}`;
+              foods[2] = `{{pgValorExato_${i + 1}}}`;
+              foods[3] = `{{pgValorPago_${i + 1}}}`;
+              foods[4] = `{{pgDataPagamento_${i + 1}}}`;
+              foods[5] = `{{pgDiasAtraso_${i + 1}}}`;
+              foods[6] = `{{pgPeriodo_${i + 1}}}`;
+            }
+            let textTd = document.createTextNode([foods[j]]);
+
+            text1.appendChild(textTd);
+            cell1.appendChild(text1);
+            rowrow.appendChild(cell1);
+          }
+        }
+        table1.appendChild(rowrow);
+        btn.remove();
+      }
+    }
+  </script>
+</html>
